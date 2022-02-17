@@ -18,7 +18,7 @@
 									"pm.environment.set(\"pet_id\", _.random(1, 5000));\r",
 									"pm.environment.set(\"category_id\",_.random(1, 500));\r",
 									"pm.environment.set(\"category_name\", randomCat());\r",
-									"pm.environment.set(\"pet_name\", randomName());\r",
+									"pm.environment.set(\"pet_name\", randName());\r",
 									"function randomCat() {\r",
 									"    const category = [\r",
 									"    \"Aardvark\",\r",
@@ -248,9 +248,13 @@
 									"];\r",
 									"    return category[Math.floor(Math.random() * (category.length - 1))];\r",
 									"}\r",
-									"function randomName() {\r",
-									"    const nameArr = ['Bella', 'Luna', 'Lucy', 'Daizy', 'Zoe', 'Lily', 'Lola', 'Bailey', 'Stella', 'Molly', 'Max', 'Charlie', 'Milo', 'Buddy', 'Rocky', 'Bear', 'Leo', 'Duke', 'Teddy', 'Tucker', 'Luna', 'Bella', 'Lily', 'Lucy', 'Nala', 'Kitty', 'Chloe', 'Stella', 'Zoe', 'Lola', 'Oliver', 'Leo', 'Milo', 'Charlie', 'Max', 'Simba', 'Jack', 'Loki', 'Ollie', 'Jasper'];\r",
-									"    return nameArr[Math.floor(Math.random() * (nameArr.length - 1))];\r",
+									"\r",
+									"// function randomName() {\r",
+									"//     const nameArr = ['Bella', 'Luna', 'Lucy', 'Daizy', 'Zoe', 'Lily', 'Lola', 'Bailey', 'Stella', 'Molly', 'Max', 'Charlie', 'Milo', 'Buddy', 'Rocky', 'Bear', 'Leo', 'Duke', 'Teddy', 'Tucker', 'Luna', 'Bella', 'Lily', 'Lucy', 'Nala', 'Kitty', 'Chloe', 'Stella', 'Zoe', 'Lola', 'Oliver', 'Leo', 'Milo', 'Charlie', 'Max', 'Simba', 'Jack', 'Loki', 'Ollie', 'Jasper'];\r",
+									"//     return nameArr[Math.floor(Math.random() * (nameArr.length - 1))];\r",
+									"// }\r",
+									"function randName() {\r",
+									"    return pm.variables.replaceIn('{{$randomFirstName}}')\r",
 									"}"
 								],
 								"type": "text/javascript"
@@ -319,10 +323,15 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"if(pm.response.code == 200) {\r",
+									"\r",
 									"var jsonData = pm.response.json();\r",
 									"pm.test(\"Response ID the same as in environment\", function () {\r",
 									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"pet_id\"));\r",
 									"});\r",
+									"pm.test(\"Response name  the same as in environment\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"pet_name\"));\r",
+									"});\r",
+									"\r",
 									"}"
 								],
 								"type": "text/javascript"
@@ -356,11 +365,16 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"// function randomName() {\r",
+									"//     const nameArr = ['Bella', 'Luna', 'Lucy', 'Daizy', 'Zoe', 'Lily', 'Lola', 'Bailey', 'Stella', 'Molly', 'Max', 'Charlie', 'Milo', 'Buddy', 'Rocky', 'Bear', 'Leo', 'Duke', 'Teddy', 'Tucker', 'Luna', 'Bella', 'Lily', 'Lucy', 'Nala', 'Kitty', 'Chloe', 'Stella', 'Zoe', 'Lola', 'Oliver', 'Leo', 'Milo', 'Charlie', 'Max', 'Simba', 'Jack', 'Loki', 'Ollie', 'Jasper'];\r",
+									"//     return nameArr[Math.floor(Math.random() * (nameArr.length - 1))];\r",
+									"// }\r",
+									"pm.environment.set(\"new_pet_name\", randomName());\r",
+									"\r",
 									"function randomName() {\r",
-									"    const nameArr = ['Bella', 'Luna', 'Lucy', 'Daizy', 'Zoe', 'Lily', 'Lola', 'Bailey', 'Stella', 'Molly', 'Max', 'Charlie', 'Milo', 'Buddy', 'Rocky', 'Bear', 'Leo', 'Duke', 'Teddy', 'Tucker', 'Luna', 'Bella', 'Lily', 'Lucy', 'Nala', 'Kitty', 'Chloe', 'Stella', 'Zoe', 'Lola', 'Oliver', 'Leo', 'Milo', 'Charlie', 'Max', 'Simba', 'Jack', 'Loki', 'Ollie', 'Jasper'];\r",
-									"    return nameArr[Math.floor(Math.random() * (nameArr.length - 1))];\r",
+									"    return pm.variables.replaceIn('{{$randomFirstName}}')\r",
 									"}\r",
-									"pm.environment.set(\"new_pet_name\", randomName());"
+									""
 								],
 								"type": "text/javascript"
 							}
