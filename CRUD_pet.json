@@ -1,0 +1,546 @@
+{
+	"info": {
+		"_postman_id": "4e734c2c-b9c4-41a4-b613-24a31173fc7c",
+		"name": "1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CRUD_pet",
+			"item": [
+				{
+					"name": "CREATE",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"pet_id\", _.random(1, 5000));\r",
+									"pm.environment.set(\"category_id\",_.random(1, 500));\r",
+									"pm.environment.set(\"category_name\", randomCat());\r",
+									"pm.environment.set(\"pet_name\", randName());\r",
+									"function randomCat() {\r",
+									"    const category = [\r",
+									"    \"Aardvark\",\r",
+									"    \"Albatross\",\r",
+									"    \"Alligator\",\r",
+									"    \"Alpaca\",\r",
+									"    \"Ant\",\r",
+									"    \"Anteater\",\r",
+									"    \"Antelope\",\r",
+									"    \"Ape\",\r",
+									"    \"Armadillo\",\r",
+									"    \"Donkey\",\r",
+									"    \"Baboon\",\r",
+									"    \"Badger\",\r",
+									"    \"Barracuda\",\r",
+									"    \"Bat\",\r",
+									"    \"Bear\",\r",
+									"    \"Beaver\",\r",
+									"    \"Bee\",\r",
+									"    \"Bison\",\r",
+									"    \"Boar\",\r",
+									"    \"Buffalo\",\r",
+									"    \"Butterfly\",\r",
+									"    \"Camel\",\r",
+									"    \"Capybara\",\r",
+									"    \"Caribou\",\r",
+									"    \"Cassowary\",\r",
+									"    \"Cat\",\r",
+									"    \"Caterpillar\",\r",
+									"    \"Cattle\",\r",
+									"    \"Chamois\",\r",
+									"    \"Cheetah\",\r",
+									"    \"Chicken\",\r",
+									"    \"Chimpanzee\",\r",
+									"    \"Chinchilla\",\r",
+									"    \"Chough\",\r",
+									"    \"Clam\",\r",
+									"    \"Cobra\",\r",
+									"    \"Cockroach\",\r",
+									"    \"Cod\",\r",
+									"    \"Cormorant\",\r",
+									"    \"Coyote\",\r",
+									"    \"Crab\",\r",
+									"    \"Crane\",\r",
+									"    \"Crocodile\",\r",
+									"    \"Crow\",\r",
+									"    \"Curlew\",\r",
+									"    \"Deer\",\r",
+									"    \"Dinosaur\",\r",
+									"    \"Dog\",\r",
+									"    \"Dogfish\",\r",
+									"    \"Dolphin\",\r",
+									"    \"Dotterel\",\r",
+									"    \"Dove\",\r",
+									"    \"Dragonfly\",\r",
+									"    \"Duck\",\r",
+									"    \"Dugong\",\r",
+									"    \"Dunlin\",\r",
+									"    \"Eagle\",\r",
+									"    \"Echidna\",\r",
+									"    \"Eel\",\r",
+									"    \"Eland\",\r",
+									"    \"Elephant\",\r",
+									"    \"Elk\",\r",
+									"    \"Emu\",\r",
+									"    \"Falcon\",\r",
+									"    \"Ferret\",\r",
+									"    \"Finch\",\r",
+									"    \"Fish\",\r",
+									"    \"Flamingo\",\r",
+									"    \"Fly\",\r",
+									"    \"Fox\",\r",
+									"    \"Frog\",\r",
+									"    \"Gaur\",\r",
+									"    \"Gazelle\",\r",
+									"    \"Gerbil\",\r",
+									"    \"Giraffe\",\r",
+									"    \"Gnat\",\r",
+									"    \"Gnu\",\r",
+									"    \"Goat\",\r",
+									"    \"Goldfinch\",\r",
+									"    \"Goldfish\",\r",
+									"    \"Goose\",\r",
+									"    \"Gorilla\",\r",
+									"    \"Goshawk\",\r",
+									"    \"Grasshopper\",\r",
+									"    \"Grouse\",\r",
+									"    \"Guanaco\",\r",
+									"    \"Gull\",\r",
+									"    \"Hamster\",\r",
+									"    \"Hare\",\r",
+									"    \"Hawk\",\r",
+									"    \"Hedgehog\",\r",
+									"    \"Heron\",\r",
+									"    \"Herring\",\r",
+									"    \"Hippopotamus\",\r",
+									"    \"Hornet\",\r",
+									"    \"Horse\",\r",
+									"    \"Human\",\r",
+									"    \"Hummingbird\",\r",
+									"    \"Hyena\",\r",
+									"    \"Ibex\",\r",
+									"    \"Ibis\",\r",
+									"    \"Jackal\",\r",
+									"    \"Jaguar\",\r",
+									"    \"Jay\",\r",
+									"    \"Jellyfish\",\r",
+									"    \"Kangaroo\",\r",
+									"    \"Kingfisher\",\r",
+									"    \"Koala\",\r",
+									"    \"Kookabura\",\r",
+									"    \"Kouprey\",\r",
+									"    \"Kudu\",\r",
+									"    \"Lapwing\",\r",
+									"    \"Lark\",\r",
+									"    \"Lemur\",\r",
+									"    \"Leopard\",\r",
+									"    \"Lion\",\r",
+									"    \"Llama\",\r",
+									"    \"Lobster\",\r",
+									"    \"Locust\",\r",
+									"    \"Loris\",\r",
+									"    \"Louse\",\r",
+									"    \"Lyrebird\",\r",
+									"    \"Magpie\",\r",
+									"    \"Mallard\",\r",
+									"    \"Manatee\",\r",
+									"    \"Mandrill\",\r",
+									"    \"Mantis\",\r",
+									"    \"Marten\",\r",
+									"    \"Meerkat\",\r",
+									"    \"Mink\",\r",
+									"    \"Mole\",\r",
+									"    \"Mongoose\",\r",
+									"    \"Monkey\",\r",
+									"    \"Moose\",\r",
+									"    \"Mosquito\",\r",
+									"    \"Mouse\",\r",
+									"    \"Mule\",\r",
+									"    \"Narwhal\",\r",
+									"    \"Newt\",\r",
+									"    \"Nightingale\",\r",
+									"    \"Octopus\",\r",
+									"    \"Okapi\",\r",
+									"    \"Opossum\",\r",
+									"    \"Oryx\",\r",
+									"    \"Ostrich\",\r",
+									"    \"Otter\",\r",
+									"    \"Owl\",\r",
+									"    \"Oyster\",\r",
+									"    \"Panther\",\r",
+									"    \"Parrot\",\r",
+									"    \"Partridge\",\r",
+									"    \"Peafowl\",\r",
+									"    \"Pelican\",\r",
+									"    \"Penguin\",\r",
+									"    \"Pheasant\",\r",
+									"    \"Pig\",\r",
+									"    \"Pigeon\",\r",
+									"    \"Pony\",\r",
+									"    \"Porcupine\",\r",
+									"    \"Porpoise\",\r",
+									"    \"Quail\",\r",
+									"    \"Quelea\",\r",
+									"    \"Quetzal\",\r",
+									"    \"Rabbit\",\r",
+									"    \"Raccoon\",\r",
+									"    \"Rail\",\r",
+									"    \"Ram\",\r",
+									"    \"Rat\",\r",
+									"    \"Raven\",\r",
+									"    \"Red deer\",\r",
+									"    \"Red panda\",\r",
+									"    \"Reindeer\",\r",
+									"    \"Rhinoceros\",\r",
+									"    \"Rook\",\r",
+									"    \"Salamander\",\r",
+									"    \"Salmon\",\r",
+									"    \"Sand Dollar\",\r",
+									"    \"Sandpiper\",\r",
+									"    \"Sardine\",\r",
+									"    \"Scorpion\",\r",
+									"    \"Seahorse\",\r",
+									"    \"Seal\",\r",
+									"    \"Shark\",\r",
+									"    \"Sheep\",\r",
+									"    \"Shrew\",\r",
+									"    \"Skunk\",\r",
+									"    \"Snail\",\r",
+									"    \"Snake\",\r",
+									"    \"Sparrow\",\r",
+									"    \"Spider\",\r",
+									"    \"Spoonbill\",\r",
+									"    \"Squid\",\r",
+									"    \"Squirrel\",\r",
+									"    \"Starling\",\r",
+									"    \"Stingray\",\r",
+									"    \"Stinkbug\",\r",
+									"    \"Stork\",\r",
+									"    \"Swallow\",\r",
+									"    \"Swan\",\r",
+									"    \"Tapir\",\r",
+									"    \"Tarsier\",\r",
+									"    \"Termite\",\r",
+									"    \"Tiger\",\r",
+									"    \"Toad\",\r",
+									"    \"Trout\",\r",
+									"    \"Turkey\",\r",
+									"    \"Turtle\",\r",
+									"    \"Viper\",\r",
+									"    \"Vulture\",\r",
+									"    \"Wallaby\",\r",
+									"    \"Walrus\",\r",
+									"    \"Wasp\",\r",
+									"    \"Weasel\",\r",
+									"    \"Whale\",\r",
+									"    \"Wildcat\",\r",
+									"    \"Wolf\",\r",
+									"    \"Wolverine\",\r",
+									"    \"Wombat\",\r",
+									"    \"Woodcock\",\r",
+									"    \"Woodpecker\",\r",
+									"    \"Worm\",\r",
+									"    \"Wren\",\r",
+									"    \"Yak\",\r",
+									"    \"Zebra\"\r",
+									"];\r",
+									"    return category[Math.floor(Math.random() * (category.length - 1))];\r",
+									"}\r",
+									"\r",
+									"// function randomName() {\r",
+									"//     const nameArr = ['Bella', 'Luna', 'Lucy', 'Daizy', 'Zoe', 'Lily', 'Lola', 'Bailey', 'Stella', 'Molly', 'Max', 'Charlie', 'Milo', 'Buddy', 'Rocky', 'Bear', 'Leo', 'Duke', 'Teddy', 'Tucker', 'Luna', 'Bella', 'Lily', 'Lucy', 'Nala', 'Kitty', 'Chloe', 'Stella', 'Zoe', 'Lola', 'Oliver', 'Leo', 'Milo', 'Charlie', 'Max', 'Simba', 'Jack', 'Loki', 'Ollie', 'Jasper'];\r",
+									"//     return nameArr[Math.floor(Math.random() * (nameArr.length - 1))];\r",
+									"// }\r",
+									"function randName() {\r",
+									"    return pm.variables.replaceIn('{{$randomFirstName}}')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Response ID the same as in environment\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"pet_id\"));\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Category name\", function () {\r",
+									"    pm.expect(jsonData.category.name).to.eql(pm.environment.get(\"category_name\"));\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Category ID \", function () {\r",
+									"    pm.expect(jsonData.category.id).to.eql(pm.environment.get(\"category_id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{pet_id}},\r\n  \"category\": {\r\n    \"id\": {{category_id}},\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"name\": \"{{pet_name}}\",\r\n  \"photoUrls\": [\r\n    \"https://pbs.twimg.com/profile_images/948294484596375552/RyGNqDEM_400x400.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"green eyes\"\r\n    }\r\n  ],\r\n  \"status\": \"sold\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"if(pm.response.code == 200) {\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Response ID the same as in environment\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"pet_id\"));\r",
+									"});\r",
+									"pm.test(\"Response name  the same as in environment\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(pm.environment.get(\"pet_name\"));\r",
+									"});\r",
+									"\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/{{pet_id}}",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{pet_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// function randomName() {\r",
+									"//     const nameArr = ['Bella', 'Luna', 'Lucy', 'Daizy', 'Zoe', 'Lily', 'Lola', 'Bailey', 'Stella', 'Molly', 'Max', 'Charlie', 'Milo', 'Buddy', 'Rocky', 'Bear', 'Leo', 'Duke', 'Teddy', 'Tucker', 'Luna', 'Bella', 'Lily', 'Lucy', 'Nala', 'Kitty', 'Chloe', 'Stella', 'Zoe', 'Lola', 'Oliver', 'Leo', 'Milo', 'Charlie', 'Max', 'Simba', 'Jack', 'Loki', 'Ollie', 'Jasper'];\r",
+									"//     return nameArr[Math.floor(Math.random() * (nameArr.length - 1))];\r",
+									"// }\r",
+									"pm.environment.set(\"new_pet_name\", randomName());\r",
+									"\r",
+									"function randomName() {\r",
+									"    return pm.variables.replaceIn('{{$randomFirstName}}')\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\":{{pet_id}},\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"{{category_name}}\"\r\n  },\r\n  \"name\": \"{{new_pet_name}}\",\r\n \"photoUrls\": [\r\n    \"https://pbs.twimg.com/profile_images/948294484596375552/RyGNqDEM_400x400.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"green eyes\"\r\n    }\r\n  ],\r\n  \"status\": \"sold\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"  });\r",
+									"if(pm.response.code == 200){\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Response new name the same as in environment new name\", function () {\r",
+									"        pm.expect(jsonData.name).to.eql(pm.environment.get(\"new_pet_name\"));\r",
+									"});\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/{{pet_id}}",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{pet_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"if(pm.response.code == 200){\r",
+									"pm.test(\"Deleted pet ID is the same as environment variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(+jsonData.message).to.eql(pm.environment.get(\"pet_id\"));\r",
+									"});\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/{{pet_id}}",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{pet_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Pet is not found\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Pet not found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/{{pet_id}}",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{pet_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
