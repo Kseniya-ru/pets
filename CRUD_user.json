@@ -19,15 +19,22 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"var jsonData = pm.response.json();\r",
+									"  var jsonData = pm.response.json();\r",
 									"pm.test(\"Response ID the same as in environment\", function () {\r",
-									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"{{user_id}}\"));\r",
+									"pm.expect(jsonData.id).to.eql(pm.environment.get(\"{{user_id}}\"));\r",
 									"});\r",
 									"  var jsonData = pm.response.json();\r",
-									"  pm.test(\"Response user_name the same as in environmend\", function () {\r",
-									" pm.expect(jsonData.name).to.eql(pm.environment.get(\"{{user_name}}\"));\r",
+									"pm.test(\"Response user_name the same as in environmend\", function () {\r",
+									"pm.expect(jsonData.name).to.eql(pm.environment.get(\"{{user_name}}\"));\r",
+									"});\r",
+									" var jsonData = pm.response.json();\r",
+									"pm.test(\"Response first_name the same as in environmend\", function () {\r",
+									"pm.expect(jsonData.first).to.eql(pm.environment.get(\"{{first_name}}\"));\r",
 									"  });\r",
-									""
+									"  var jsonData = pm.response.json();\r",
+									"pm.test(\"Response Password the same as in environmend\", function () {\r",
+									"pm.expect(jsonData.pas).to.eql(pm.environment.get(\"{{password}}\"));\r",
+									"  });"
 								],
 								"type": "text/javascript"
 							}
@@ -38,9 +45,18 @@
 								"exec": [
 									"pm.environment.set(\"user_id\", _.random(1, 2500));\r",
 									"pm.environment.set(\"user_name\", randomUser());\r",
-									"function randomUser() {\r",
+									"    function randomUser() {\r",
 									"    return pm.variables.replaceIn('{{$randomUserName}}')\r",
-									"}\r",
+									" }\r",
+									"pm.environment.set(\"first_name\", randomFirst());\r",
+									"    function randomFirst() {\r",
+									"    return pm.variables.replaceIn('{{$randomFirstName}}')\r",
+									" }\r",
+									" pm.environment.set(\"password\", randomPas());\r",
+									"    function randomPas() {\r",
+									"    return pm.variables.replaceIn('{{$randomPassword}}')\r",
+									" }\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -52,7 +68,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": {{user_id}},\r\n  \"username\": \"{{user_name}}\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+							"raw": "{\r\n  \"id\": {{user_id}},\r\n  \"username\": \"{{user_name}}\",\r\n  \"firstName\": \"{{first_name}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"userStatus\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -85,12 +101,11 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									"\r",
 									"var jsonData = pm.response.json();\r",
 									"pm.test(\"Response ID the same as in environment\", function () {\r",
 									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"user_id\"));\r",
 									"});\r",
-									"pm.test(\"Response name  the same as in environment\", function () {\r",
+									"pm.test(\"Response user name  the same as in environment\", function () {\r",
 									"    pm.expect(jsonData.username).to.eql(pm.environment.get(\"user_name\"));\r",
 									"});\r",
 									""
@@ -127,10 +142,11 @@
 							"script": {
 								"exec": [
 									"pm.environment.set(\"user_name\", randomNewUserName());\r",
-									"\r",
 									"function randomNewUserName() {\r",
-									"    return pm.variables.replaceIn('{{$randomUserName}}')\r",
-									"}"
+									"return pm.variables.replaceIn('{{$randomUserName}}')\r",
+									"}\r",
+									"pm.variables.replaceIn('{{$randomEmail}}')\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -152,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": {{user_id}},\r\n  \"username\": \"{{user_name}}\",\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"password\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"userStatus\": 0\r\n}",
+							"raw": "{\r\n  \"id\": {{user_id}},\r\n  \"username\": \"{{user_name}}\",\r\n  \"firstName\": \"{{first_name}}\",\r\n  \"lastName\": \"{{$randomLastName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"phone\": \"{{$randomPhoneNumber}}\",\r\n  \"userStatus\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -189,6 +205,15 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Response user name the same as in environment\", function () {\r",
+									"    pm.expect(jsonData.username).to.eql(pm.environment.get(\"user_name\"));\r",
+									"});\r",
+									"pm.test(\"Response password the same as in environment\", function () {\r",
+									"    pm.expect(jsonData.pas).to.eql(pm.environment.get(\"{{password}}\"));\r",
+									"});\r",
+									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
